@@ -1,0 +1,22 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+
+# Environment
+.env 
+
+#Coverage unit test
+
+coverage/
+
+# Directory for built application files
+
+dist/
+build/
+
+#IDE setting?
+
+.vscode/
+.idea/
