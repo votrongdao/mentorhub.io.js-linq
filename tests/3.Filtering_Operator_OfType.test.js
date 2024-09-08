@@ -13,7 +13,6 @@ var intResult = from s in mixedList.OfType<int>()
                 select s;
 
 */
-require("../linq");
 require("../linq")
 describe('Array.prototype.ofType', () => {
   function Student(id, name) {
