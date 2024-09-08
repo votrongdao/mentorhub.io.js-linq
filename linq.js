@@ -37,7 +37,6 @@
     };
 
     // Helper function to handle comparisons
-    // Helper function to handle comparisons
     function compareValues(keySelector, isDescending = false) {
         return (a, b) => {
             const aValue = keySelector(a);
@@ -47,7 +46,7 @@
             if (aValue > bValue) return isDescending ? -1 : 1;
             return 0;
         };
-    }
+    };
 
     // Extending Array prototype for sortBy (equivalent to OrderBy)
     Array.prototype.sortBy = function (keySelector) {
@@ -104,10 +103,6 @@
         });
     };
 
-    //Array.prototype.ThenByDescending = function (keySelector) {
-    //    return this.OrderByDescending(keySelector);
-    //};
-
     Array.prototype.ofType = function (type) {
         return this.filter(function (item) {
             if (type === null) {
@@ -130,6 +125,100 @@
         });
     };
 
+    Array.prototype.distinct = function (keySelector) {
+        return this.filter((item, index, self) => self.findIndex(t => keySelector(t) === keySelector(item)) === index);
+    };
+
+    Array.prototype.groupBy = function (keySelector) {
+        return this.reduce((result, item) => {
+            const key = keySelector(item);
+            if (!result[key]) {
+                result[key] = [];
+            }
+            result[key].push(item);
+            return result;
+        }, {});
+    };
+
+    Array.prototype.toLookup = function (keySelector) {
+        return this.reduce((result, item) => {
+            const key = keySelector(item);
+            if (!result[key]) {
+                result[key] = [];
+            }
+            result[key].push(item);
+            return result;
+        }, {});
+    };
+
+    Array.prototype.sum = function (selector) {
+        return this.reduce((acc, val) => acc + selector(val), 0);
+    };
+
+    Array.prototype.min = function (selector) {
+        return this.reduce((acc, val) => Math.min(acc, selector(val)), Infinity);
+    };
+
+    Array.prototype.max = function (selector) {
+        return this.reduce((acc, val) => Math.max(acc, selector(val)), -Infinity);
+    };
+
+    Array.prototype.average = function (selector) {
+        return this.sum(selector) / this.length;
+    };
+
+    Array.prototype.all = function (predicate) {
+        return this.every(predicate);
+    };
+
+    Array.prototype.any = function (predicate) {
+        return this.some(predicate);
+    };
+
+    Array.prototype.contains = function (item) {
+        return this.indexOf(item) !== -1;
+    };
+
+    Array.prototype.elementAt = function (index) {
+        return this[index];
+    };
+
+    Array.prototype.elementAtOrDefault = function (index) {
+        return this[index] || null;
+    };
+
+    Array.prototype.firstOrDefault = function (predicate) {
+        return this.first(predicate) || null;
+    };
+
+    Array.prototype.lastOrDefault = function (predicate) {
+        return this.last(predicate) || null;
+    };
+
+    Array.prototype.last = function (predicate) {
+        if (predicate) return this.where(predicate).last();
+        return this[this.length - 1];
+    };
+    //select many
+
+    ////join 
+    //Array.prototype.join = function (inner, outerKeySelector, innerKeySelector, resultSelector) {
+    //    return this.selectMany(outer => inner
+    //                                    .where(inner => outerKeySelector(outer) === innerKeySelector(inner))
+    //                                    .select(inner => resultSelector(outer, inner)));
+    //};
+
+    ////groupJoin
+    //Array.prototype.groupJoin = function (inner, outerKeySelector, innerKeySelector, resultSelector) {
+    //    return this.select(outer => {
+    //        return {
+    //            outer,
+    //            inner: inner.where(inner => outerKeySelector(outer) === innerKeySelector(inner))
+    //        };
+    //    }).selectMany(outerInner => outerInner.inner.select(inner => resultSelector(outerInner.outer, inner)));
+    //};
+
+
 })();
 
 // String extensions
@@ -139,3 +228,4 @@
         return this.indexOf(arguments[0]) !== -1;
     };
 })();
+
