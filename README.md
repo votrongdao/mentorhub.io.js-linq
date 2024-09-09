@@ -2,7 +2,7 @@
 
 # Purpose
 
-This is just for fun project to spend 2 days weekend
+This is just for fun project to spend 2 days at weekend
 
 # js-linq
 Linq in JavaScript: js-linq brings LINQ-style query syntax to JavaScript, allowing you to perform complex data transformations and queries with ease. This library mimics the LINQ functionality in C#, providing methods like where, select, join, orderBy, and more, enabling powerful data manipulation on arrays and objects.
