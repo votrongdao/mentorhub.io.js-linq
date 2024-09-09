@@ -199,26 +199,7 @@
         if (predicate) return this.where(predicate).last();
         return this[this.length - 1];
     };
-    //select many
-
-    ////join 
-    //Array.prototype.join = function (inner, outerKeySelector, innerKeySelector, resultSelector) {
-    //    return this.selectMany(outer => inner
-    //                                    .where(inner => outerKeySelector(outer) === innerKeySelector(inner))
-    //                                    .select(inner => resultSelector(outer, inner)));
-    //};
-
-    ////groupJoin
-    //Array.prototype.groupJoin = function (inner, outerKeySelector, innerKeySelector, resultSelector) {
-    //    return this.select(outer => {
-    //        return {
-    //            outer,
-    //            inner: inner.where(inner => outerKeySelector(outer) === innerKeySelector(inner))
-    //        };
-    //    }).selectMany(outerInner => outerInner.inner.select(inner => resultSelector(outerInner.outer, inner)));
-    //};
-
-
+    
 })();
 
 // String extensions
